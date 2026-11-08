@@ -3,21 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
   <meta name="description" content="MODU Smart Essentials — thoughtfully designed everyday tech accessories.">
+  <link rel="icon" type="image/png" href="modu-logo.png">
   <title>MODU — Smart Essentials</title>
   <style>
     :root{--ink:#111;--muted:#777;--line:#e9e9e9;--paper:#fff;--soft:#f6f6f4}
-    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif}
-    a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:auto;padding:0 24px}
-    header{height:82px;border-bottom:1px solid var(--line);display:flex;align-items:center}
-    .nav{display:flex;align-items:center;justify-content:space-between;width:100%}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.16em}
-    .brand img{width:48px;height:48px;object-fit:contain}.nav small{color:var(--muted);letter-spacing:.12em}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+    header{min-height:82px;border-bottom:1px solid var(--line);display:flex;align-items:center}
+    .nav{display:flex;align-items:center;justify-content:space-between;width:100%;gap:20px}
+    .brand{display:inline-flex;align-items:center;min-width:0}
+    .brand img{display:block;width:64px;height:48px;object-fit:contain}
+    .nav small{color:var(--muted);letter-spacing:.16em;font-size:11px;text-align:right}
     .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:54px;align-items:center;padding:76px 0 84px}
     .eyebrow{font-size:11px;letter-spacing:.22em;color:var(--muted);font-weight:700}
     h1{font-size:clamp(42px,6vw,72px);line-height:.98;letter-spacing:-.055em;margin:18px 0}
     .lead{font-size:17px;line-height:1.7;color:#666;max-width:470px}
-    .cta{display:inline-block;margin-top:22px;background:#111;color:white;padding:15px 24px;border-radius:3px;font-size:12px;letter-spacing:.12em}
+    .cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;margin-top:22px;background:#111;color:white;padding:14px 24px;border-radius:3px;font-size:12px;letter-spacing:.12em;transition:background .2s ease}
+    .cta:hover,.cta:focus-visible{background:#444}
+    .cta:focus-visible{outline:2px solid #111;outline-offset:4px}
     .visual{min-height:390px;background:var(--soft);display:grid;place-items:center;position:relative;overflow:hidden}
     .stand{width:180px;height:220px;position:relative;transform:rotate(-8deg)}
     .plate{position:absolute;left:28px;top:8px;width:128px;height:168px;border:12px solid #b8b8b8;border-radius:25px;background:linear-gradient(135deg,#fdfdfd,#cfcfcf);box-shadow:18px 22px 30px #0002}
@@ -28,33 +36,55 @@
     h2{font-size:28px;letter-spacing:-.03em;margin:10px 0 16px}
     .copy{color:#666;line-height:1.8;font-size:14px}
     .specs{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    .spec{border-top:1px solid var(--line);padding-top:14px}.spec b{display:block;font-size:12px;letter-spacing:.1em}.spec span{display:block;color:#777;font-size:13px;margin-top:8px}
+    .spec{border-top:1px solid var(--line);padding-top:14px}
+    .spec b{display:block;font-size:12px;letter-spacing:.1em}
+    .spec span{display:block;color:#777;font-size:13px;line-height:1.55;margin-top:8px}
     .notice{background:#f7f7f7;padding:16px 18px;color:#666;font-size:12px;line-height:1.6;margin-top:24px}
-    footer{border-top:1px solid var(--line);padding:26px 0;color:#888;font-size:11px;letter-spacing:.08em}
-    @media(max-width:760px){.hero{grid-template-columns:1fr;gap:30px;padding:48px 0}.visual{min-height:310px}.details{grid-template-columns:1fr;gap:28px}header{height:70px}.brand img{width:40px;height:40px}}
+    footer{border-top:1px solid var(--line);padding:26px 0;color:#888;font-size:11px;letter-spacing:.08em;line-height:1.6}
+    @media(max-width:760px){
+      .wrap{width:min(100% - 40px,560px)}
+      header{min-height:70px}
+      .brand img{width:58px;height:42px}
+      .hero{grid-template-columns:1fr;gap:30px;padding:48px 0 56px}
+      h1{font-size:clamp(44px,12vw,64px)}
+      .lead{font-size:16px}
+      .visual{min-height:310px}
+      .details{grid-template-columns:1fr;gap:30px;padding:42px 0}
+    }
+    @media(max-width:420px){
+      .wrap{width:calc(100% - 32px)}
+      .specs{gap:16px}
+      .nav small{font-size:9px;letter-spacing:.12em}
+      .visual{min-height:280px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
   </style>
 </head>
-<body>
-<header><div class="wrap nav">
-  <a class="brand" href="#"><img src="assets/modu-logo.png" alt="MODU logo"><span>MODU</span></a>
-  <small>SMART ESSENTIALS</small>
-</div></header>
+<body id="top">
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="MODU home">
+      <img src="modu-logo.png" alt="MODU">
+    </a>
+    <small>SMART ESSENTIALS</small>
+  </div>
+</header>
 <main class="wrap">
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
     <div>
-      <div class="eyebrow">OBJECT 001 · DESK & MOBILE</div>
-      <h1>Make space<br>for better.</h1>
+      <div class="eyebrow">OBJECT 001 · DESK &amp; MOBILE</div>
+      <h1 id="hero-title">Make space<br>for better.</h1>
       <p class="lead">A cleaner way to keep your phone in view. Meet the MODU Magnetic Phone Stand — a considered everyday accessory for your desk.</p>
       <a class="cta" href="#details">DISCOVER THE CONCEPT</a>
     </div>
-    <div class="visual" role="img" aria-label="Minimal illustration of an adjustable aluminum phone stand">
-      <div class="stand"><div class="plate"></div><div class="hinge"></div><div class="base"></div></div>
+    <div class="visual" role="img" aria-label="Minimal concept illustration of an adjustable phone stand">
+      <div class="stand" aria-hidden="true"><div class="plate"></div><div class="hinge"></div><div class="base"></div></div>
     </div>
   </section>
-  <section class="details" id="details">
+  <section class="details" id="details" aria-labelledby="details-title">
     <div>
       <div class="eyebrow">DESIGNED FOR EVERYDAY USE</div>
-      <h2>Simple by design.</h2>
+      <h2 id="details-title">Simple by design.</h2>
       <p class="copy">A compact, adjustable phone stand concept with a clean silhouette. We are currently validating the exact supplier model, magnet strength, phone compatibility, shipping options and final price before opening orders.</p>
       <div class="notice"><b>Pre-launch preview:</b> This page is a design prototype. Checkout and payment are not enabled. No orders or payments are being accepted yet.</div>
     </div>
@@ -66,5 +96,6 @@
     </div>
   </section>
 </main>
-<footer><div class="wrap">© MODU SMART ESSENTIALS · PRE-LAUNCH CONCEPT · CONTACT: ADD YOUR EMAIL BEFORE PUBLISHING</div></footer>
-</body></html>
+<footer><div class="wrap">© MODU SMART ESSENTIALS · PRE-LAUNCH CONCEPT</div></footer>
+</body>
+</html>
